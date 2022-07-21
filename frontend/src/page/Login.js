@@ -8,7 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Box, Button } from "@mui/material";
 
 const Login = () => {
   const provider = new GoogleAuthProvider();
@@ -54,13 +54,15 @@ const Login = () => {
     console.log(res.data);
   };
 
+  console.log("aa");
+
   return (
-    <div>
-      <Button colorScheme="teal" onClick={loginWithGoogle}>
+    <Box sx={{ m: 10 }}>
+      <Button variant="contained" onClick={loginWithGoogle}>
         Login
       </Button>
       {/* <Button onClick={sendToken}>sendToken</Button> */}
-    </div>
+    </Box>
   );
 };
 

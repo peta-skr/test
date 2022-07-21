@@ -23,14 +23,13 @@
 
 # 使用法
 
-- Mysql をインストール
-- firebase でプロジェクトを作成し、authentication を押して、sign-in methodd で新しいプロバイダをクリックし、google を追加
+- Mysql をインストール(xampp の htdocs に入れてできるかは試していない)
+- server と frontend で npm install する。
+- firebase でプロジェクトを作成し、authentication を押して、sign-in method で新しいプロバイダをクリックし、google を追加
 - frontend フォルダ内の config フォルダに firebase-config.js を作成し、firebase から firebaseconfig をコピーする。
 - server フォルダ内に.env ファイルを作成して.env.example を参考にしながら自分の DB の設定を打ち込む。
-- server フォルダ内の config フォルダに serviceAccount.json を作成して
-
-# α 版までにやること
-
-- コードの整理
-- 見た目の変更
-- 検索機能
+- server フォルダ内の config フォルダに serviceAccount.json を作成
+- google cloud へ行き、サイトバーの IAM と管理からサービスアカウントを選択し、アカウント作成。名前だけ入れたら ok なはず
+- そのアカウントをクリックし、キーに行く。そして、鍵を追加を押して、JSON を選択
+- そしたら、ファイルがダウンロードされるのでその中身を firebase-config.js にペーストする。
+- server 側も frontend 側も npm start で実行できるはず。

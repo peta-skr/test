@@ -78,7 +78,7 @@ const Thread = () => {
       </form>
       <Text fontSize="xl">レスポンス一覧</Text>
       {data.response.map((item) => {
-        let user = users.find((user) => user.id === item.user_id);
+        let user = users.find((user) => user.id === item.userId);
         if (!user) {
           user = {
             id: 0,

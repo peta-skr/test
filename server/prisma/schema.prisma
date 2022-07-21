@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id       String     @id @default(uuid())
+  id       Int        @id @default(autoincrement())
   uid      String     @unique
   name     String
   Response Response[]
@@ -19,20 +19,21 @@ model User {
 }
 
 model Response {
-  id       String @id @default(uuid())
-  creator  User   @relation(fields: [userId], references: [id])
-  userId   String
-  thread   Thread @relation(fields: [threadId], references: [id])
-  threadId String
+  id        Int      @id @default(autoincrement())
+  creator   User     @relation(fields: [userId], references: [id])
+  userId    Int
+  thread    Thread   @relation(fields: [threadId], references: [id])
+  threadId  Int
   createdAt DateTime @default(now())
-  text String
+  text      String @db.Text()
 }
 
 model Thread {
-  id        String     @id @default(uuid())
-  Responses Response[]
-  creator   User       @relation(fields: [userId], references: [id])
-  userId    String
+  id          Int        @id @default(autoincrement())
+  creator     User       @relation(fields: [userId], references: [id])
+  userId      Int
+  title String
   description String
-  createdAt DateTime @default(now())
+  createdAt   DateTime   @default(now())
+  Response    Response[]
 }
