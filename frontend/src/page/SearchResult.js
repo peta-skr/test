@@ -1,14 +1,7 @@
 import React from "react";
 import { Link as RoutesLink } from "react-router-dom";
 import axios from "axios";
-import {
-  Button,
-  ButtonGroup,
-  Heading,
-  Input,
-  Box,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Typography } from "@mui/material";
 
 const SearchResult = ({ results }) => {
   return (
@@ -16,10 +9,10 @@ const SearchResult = ({ results }) => {
       {results.map((thread) => (
         <Box maxW="sm" p="5" m="3" borderWidth="1px" borderRadius="lg">
           <RoutesLink to={"/thread?threadId=" + thread.id}>
-            <Text fontSize="lg" key={thread.id}>
+            <Typography fontSize="lg" key={thread.id}>
               {thread.title}
-            </Text>
-            <Text fontSize="lg">{thread.createdAt}</Text>
+            </Typography>
+            <Typography fontSize="lg">{thread.createdAt}</Typography>
           </RoutesLink>
         </Box>
       ))}

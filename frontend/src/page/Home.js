@@ -52,7 +52,7 @@ const Home = () => {
       <Typography variant="h4">Thread list</Typography>
       {threads.map((thread) => (
         <Card sx={{ maxWidth: 500, m: 2, p: 2 }}>
-          <Link href={"thread?threadId=" + thread.id}>
+          <Link underline="none" href={"thread?threadId=" + thread.id}>
             <Typography variant="subtitle1" key={thread.id}>
               {thread.title}
             </Typography>

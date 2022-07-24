@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,6 +15,15 @@ import {
 const Header = () => {
   const navigate = useNavigate();
   const auth = getAuth();
+  const [login, setLogin] = useState(false);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLogin(true);
+      }
+    });
+  }, []);
 
   const logout = () => {
     signOut(auth)
@@ -28,25 +37,38 @@ const Header = () => {
   };
 
   return (
-    <Box>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Button color="inherit">Home</Button>
-          <Button color="inherit" onClick={() => navigate("/login")}>
-            Login
+          <Button
+            color="inherit"
+            sx={{ flexGrow: 1 }}
+            onClick={() => navigate("/")}
+          >
+            Home
           </Button>
-          <Button color="inherit" disabled>
-            register
-          </Button>
-          <Button color="inherit" onClick={() => logout()}>
-            Logout
-          </Button>
-          <RoutesLink to={"create"}>
-            <Button color="inherit">Create THread</Button>
-          </RoutesLink>
-          <RoutesLink to={"search"}>
-            <Button color="inherit">search THread</Button>
-          </RoutesLink>
+          {login ? (
+            <>
+              <Button color="inherit" onClick={() => logout()}>
+                Logout
+              </Button>
+              <Button color="inherit" onClick={() => navigate("/create")}>
+                Create THread
+              </Button>
+              <Button color="inherit" onClick={() => navigate("/search")}>
+                search THread
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button color="inherit" onClick={() => navigate("/login")}>
+                Login
+              </Button>
+              <Button color="inherit" disabled>
+                register
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

@@ -8,7 +8,7 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
 } from "firebase/auth";
-import { Box, Button, Heading, Input, Text } from "@chakra-ui/react";
+import { TextField, Button, Typography, Box } from "@mui/material";
 
 const Thread = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -66,17 +66,19 @@ const Thread = () => {
 
   return (
     <div>
-      <Heading>{data.thread[0] ? data.thread[0].title : "awit"}</Heading>
-      <Text fontSize="xl">threadの説明</Text>
+      <Typography variant="contained">
+        {data.thread[0] ? data.thread[0].title : "awit"}
+      </Typography>
+      <Typography fontSize="xl">threadの説明</Typography>
       <p>{data.thread[0] && data.thread[0].description}</p>
-      <Text fontSize="xl">レスポンスを送信する</Text>
+      <Typography fontSize="xl">レスポンスを送信する</Typography>
       <form onSubmit={(e) => sendResponse(e)}>
-        <Input type="text" w="50%" name="text" required />
-        <Button colorScheme="teal" type="submit">
+        <TextField type="text" w="50%" name="text" required />
+        <Button variant="contained" type="submit">
           send
         </Button>
       </form>
-      <Text fontSize="xl">レスポンス一覧</Text>
+      <Typography fontSize="xl">レスポンス一覧</Typography>
       {data.response.map((item) => {
         let user = users.find((user) => user.id === item.userId);
         if (!user) {
@@ -88,7 +90,7 @@ const Thread = () => {
         }
         if (user.uid === me) {
           return (
-            <Box bg="teal" borderRadius="lg" p="3" m="3" color="white">
+            <Box bgcolor="azure" borderRadius="lg" p="3" m="3">
               <h1>{user.name}</h1>
               <p>{item.text}</p>
             </Box>

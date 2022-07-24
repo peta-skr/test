@@ -9,14 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import {
-  Button,
-  ButtonGroup,
-  Heading,
-  Input,
-  Box,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 const CreateThread = () => {
   const [au, setAu] = useState(false);
@@ -50,12 +43,14 @@ const CreateThread = () => {
 
   return (
     <div>
-      <Heading size="lg">Create Thread</Heading>
+      <Typography variant="h5" size="lg">
+        Create Thread
+      </Typography>
       <Box w="50%">
         <form onSubmit={(e) => createThread(e)}>
-          <Input type="text" name="title" placeholder="title" />
-          <Input type="text" name="description" placeholder="description" />
-          <Button colorScheme="teal" type="submit">
+          <TextField type="text" name="title" placeholder="title" />
+          <TextField type="text" name="description" placeholder="description" />
+          <Button variant="contained" type="submit">
             create
           </Button>
         </form>

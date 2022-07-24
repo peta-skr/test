@@ -148,7 +148,7 @@ app.get("/thread/search/date", (req, res) => {
 app.get("/thread/search/both", (req, res) => {
   console.log(req.query);
   connection.query(
-    `SELECT * FROM thread WHERE title LIKE "%${req.query.keyword}%" AND DATE_FORMAT(createdAt, '%Y-%m-%d') >= DATE_FORMAT('${req.query.date}', '%Y-%m-%d`,
+    `SELECT * FROM thread WHERE title LIKE "%${req.query.keyword}%" AND DATE_FORMAT(createdAt, '%Y-%m-%d') >= DATE_FORMAT('${req.query.date}', '%Y-%m-%d')`,
     (error, results) => {
       res.send(results);
       console.log(results);
